@@ -1,5 +1,3 @@
-// src/pages/api/getSaved.ts
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connectMongo from '../../lib/mongodb';
 import mongoose from 'mongoose';

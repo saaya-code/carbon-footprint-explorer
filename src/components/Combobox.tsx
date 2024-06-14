@@ -74,7 +74,7 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
       </div>
       {isFocused && results.length > 0 && (
         <ul className="absolute bg-white border border-ecoGreen rounded mt-2 w-full max-h-60 overflow-y-auto z-10">
-          {results.map((result,index) => (
+          {results.map((result, index) => (
             <li
               key={result.name}
               className="p-2 hover:bg-ecoLightGreen cursor-pointer flex justify-between"

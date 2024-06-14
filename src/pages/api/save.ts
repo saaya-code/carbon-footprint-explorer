@@ -1,4 +1,4 @@
-// src/pages/api/save.ts
+
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connectMongo from '../../lib/mongodb';
@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } catch (error) {
       console.log(error);
       res.status(500).send('Error saving result');
+      // @TODO : could handle with sentry or other error tracking service 
     }
   } else {
     res.setHeader('Allow', ['POST']);
