@@ -41,7 +41,7 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
 
   const handleSave = async (result: SearchResult) => {
       try {
-        await axios.post(`http://localhost:3000/api/save`, result);
+        await axios.post(`/api/save`, result);
         onSave(result);
         console.log(result)
         alert('Result saved successfully');

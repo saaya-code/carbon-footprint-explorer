@@ -33,7 +33,7 @@ export default function Home() {
       setAllResults(data.results);
     };
     const getSavedResults = async () => {
-        const res = await fetch('http://localhost:3000/api/getSaved');
+        const res = await fetch('/api/getSaved');
         const data = await res.json();
         let saved = [];
         for(let i = 0; i < data.length; i++){
