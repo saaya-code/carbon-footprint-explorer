@@ -33,7 +33,7 @@ export default function Home() {
       setAllResults(data.results);
     };
     const getSavedResults = async () => {
-        const res = await fetch('http://localhost:5000/getSaved');
+        const res = await fetch('http://localhost:3000/api/getSaved');
         const data = await res.json();
         let saved = [];
         for(let i = 0; i < data.length; i++){
@@ -41,9 +41,9 @@ export default function Home() {
         }
         setSaved(data);
     }
-
     fetchResults();
     getSavedResults();
+
   }, []);
 
   const handleSave = (result: SearchResult) => {
