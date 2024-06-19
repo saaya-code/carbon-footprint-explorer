@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from 'tailwindcss/colors'
 
 const config: Config = {
   content: [
@@ -20,6 +21,14 @@ const config: Config = {
         ecoBrown: '#8B5A2B',
         ecoBeige: '#E3DCC2',
       },
+      secondary:{
+        default: colors.neutral[200],
+        hover: colors.neutral[300],
+        border: colors.neutral[400],
+        text: colors.neutral[500],
+        dark: colors.neutral[800],
+        ["dark-hover"]: colors.neutral[900],
+    },
     },
   },
   plugins: [],

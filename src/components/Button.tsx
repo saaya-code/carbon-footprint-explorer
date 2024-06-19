@@ -22,6 +22,5 @@ const buttonStyles = cva(["transition-colors"],{
 type ButtonProps = VariantProps<typeof buttonStyles> & ComponentProps<"button">
 
 export function Button({variant, size, className, ...props }: ButtonProps) {
-    // the order in twMerge matters; the latter has priority
     return <button {...props} className={twMerge(buttonStyles({variant, size}), className)} />
 }
