@@ -15,14 +15,15 @@ interface SavedResultsProps {
 
 export default function SavedResults({ saved, handleDelete }: SavedResultsProps) {
     
-
   return (
     <div className="p-4">
       <h2 className="text-ecoDarkGreen text-lg font-bold">Saved Results</h2>
       <ul className="space-y-2 mt-2">
         {saved.map((item, index) => (
           <li key={item.name+index} className="border border-gray-400 rounded p-2 w-half flex justify-between">
+            <div>
             <span className="font-bold">{item.name}</span>
+            </div>
             <Button className="bg-ecoBrown text-white rounded p-1" onClick={(e)=>{handleDelete(e,index)}}>
               <Trash/>
             </Button>
