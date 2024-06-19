@@ -68,16 +68,17 @@ export default function Home() {
         ) : (
           <>
             <Combobox onSearch={handleSearch} results={results} onSave={handleSave} savedResults={saved} />
-            {loadingData ? (
-            <>
-            <p>Loading Saved Results...</p>
-            <div className="flex justify-start items-start h-screen">
-            <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-400 h-16 w-16">
-            </div>
-            </div>
-            </>
-            ) : <SavedResults saved={saved} />
-        }
+            {
+                loadingData ? (
+                    <>
+                    <p>Loading Saved Results...</p>
+                    <div className="flex justify-start items-start h-screen">
+                    <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-400 h-16 w-16">
+                    </div>
+                    </div>
+                    </>
+                ) : <SavedResults saved={saved} />
+            }
           </>
         )}
       </div>
