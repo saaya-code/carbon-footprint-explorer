@@ -33,6 +33,7 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
   };
   const closeModal = () => {
     setModalState({open:false, message:''});
+    handleClear();
   };
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (!comboboxRef.current?.contains(e.relatedTarget)) {
@@ -44,14 +45,20 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
     return savedResults.some(saved => saved.name === result.name);
   };
 
+  const handleClear = () =>{
+    setQuery('');
+    setIsFocused(false);
+  }
+  
   const handleSave = async (result: SearchResult) => {
       try {
         await axios.post(`/api/save`, result);
         onSave(result);
         console.log(result)
         //alert('Result saved successfully');
-        setIsFocused(false);
         setModalState({open:true, message:`${result.name} saved successfully`});
+        handleClear();
+
 
       } catch (error) {
         alert('Error Saving Result');
@@ -62,19 +69,19 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
   return (
     <div
       className="p-4 relative"
-      onFocus={handleFocus}
       onBlur={handleBlur}
       ref={comboboxRef}
     ><div className='flex justify-end items-center'>
       <input
         type="text"
+        onFocus={handleFocus}
         value={query}
         onChange={handleInputChange}
         className="border border-ecoGreen rounded p-2 w-full"
         placeholder="Search for carbon footprint..."
       />
       <button
-        onClick={() => {setQuery(''); setIsFocused(false);}}
+        onClick={handleClear}
         className="bg-ecoBrown text-white rounded p-2 ml-2"
       >
         Clear

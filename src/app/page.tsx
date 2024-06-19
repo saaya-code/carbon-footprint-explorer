@@ -74,7 +74,7 @@ export default function Home() {
                         </div>
                     </>
                 ) : <SavedResults saved={saved} handleDelete={(e, index)=>{
-                    console.log(saved[index].name);
+                    console.log(`Deleted ${saved[index].name}`);
                     fetch(`/api/deleteSaved/${saved[index].name}`, {
                         method: 'DELETE',
                     }).then(() => {
