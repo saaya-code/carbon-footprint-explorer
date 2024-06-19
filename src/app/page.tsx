@@ -29,22 +29,18 @@ export default function Home() {
 
   useEffect(() => {
     const fetchResults = async () => {
-      setLoading(true); // Set loading to true before fetching data
+      setLoading(true); 
       //const apiKey = process.env.NEXT_PUBLIC_CLIMATIQ_API_KEY;
       const res = await fetch(`https://swapi.dev/api/people/`);
       const data = await res.json();
       setAllResults(data.results);
-      setLoading(false); // Set loading to false after data is fetched
+      setLoading(false); 
 
     };
     const getSavedResults = async () => {
         setLoadingData(true);
         const res = await fetch('/api/getSaved');
         const data = await res.json();
-        let saved = [];
-        for(let i = 0; i < data.length; i++){
-            saved.push(data[i].name);
-        }
         setSaved(data);
         setLoadingData(false);
     }
