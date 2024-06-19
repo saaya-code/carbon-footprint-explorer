@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import Modal from './Modal';
+
 interface SearchResult {
   name: string;
   id: string;
@@ -18,6 +20,7 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const comboboxRef = useRef<HTMLDivElement>(null);
+  const [modalState, setModalState] = useState<{open: boolean, message:string}>({open: false, message: ''});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value;
@@ -28,7 +31,9 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
   const handleFocus = () => {
     setIsFocused(true);
   };
-
+  const closeModal = () => {
+    setModalState({open:false, message:''});
+  };
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (!comboboxRef.current?.contains(e.relatedTarget)) {
       setIsFocused(false);
@@ -44,7 +49,10 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
         await axios.post(`/api/save`, result);
         onSave(result);
         console.log(result)
-        alert('Result saved successfully');
+        //alert('Result saved successfully');
+        setIsFocused(false);
+        setModalState({open:true, message:`${result.name} saved successfully`});
+
       } catch (error) {
         alert('Error Saving Result');
         console.error(error);
@@ -91,6 +99,8 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
           ))}
         </ul>
       )}
+        <Modal isOpen={modalState.open} message={modalState.message} onClose={closeModal} />
+
     </div>
   );
 }
