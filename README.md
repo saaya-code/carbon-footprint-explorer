@@ -70,13 +70,18 @@ This guide will walk you through setting up a Node.js project with MongoDB and c
 
 ## Step 5: Start the Application
 
-1. Run the Node.js application:
+1. Run the application in dev mode:
    ```bash
-   npm start
+   npm run dev
    ```
 
 2. Access the application in your web browser at `http://localhost:3000`.
 
+3. Run the application in production mode:
+4. ```bash
+   npm run build
+   npm start
+   ```
 ---
 
 
