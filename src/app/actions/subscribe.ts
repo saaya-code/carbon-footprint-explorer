@@ -12,7 +12,7 @@ export async function subscribe(email: string): Promise<string> {
   try {
     const existingSubscriber = await SubscriberModel.findOne({ email });
     if (existingSubscriber) {
-      throw new Error('Email already subscribed');
+        return 'Email already subscribed';
     }
 
     const newSubscriber = new SubscriberModel({ email });
