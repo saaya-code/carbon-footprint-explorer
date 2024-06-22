@@ -7,7 +7,7 @@ This guide will walk you through setting up a Node.js project with MongoDB and c
 
 1. Clone the project repository from GitHub:
    ```bash
-   git clone [https://github.com/saaya-code/carbon-footprint-explorer](https://github.com/saaya-code/carbon-footprint-explorer)
+   git clone https://github.com/saaya-code/carbon-footprint-explorer
    ```
 
 2. Navigate into the project directory:
