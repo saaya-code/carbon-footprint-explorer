@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Project Setup Guide
 
-First, run the development server:
+This guide will walk you through setting up a Node.js project with MongoDB and configuring environment variables for database connection and email credentials.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Step 1: Clone the Project Repository
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the project repository from GitHub:
+   ```bash
+   git clone [<repository-url>](https://github.com/saaya-code/carbon-footprint-explorer)
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Navigate into the project directory:
+   ```bash
+   cd carbon-footprint-explorer
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Step 2: Install Dependencies
 
-## Learn More
+1. Install Node.js dependencies using npm:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## Step 3: MongoDB Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Install MongoDB Community Edition**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   - Visit the [MongoDB Download Center](https://www.mongodb.com/try/download/community) and download the Community Server version suitable for your operating system.
+   - Follow the installation instructions for your OS.
 
-## Deploy on Vercel
+2. **Start MongoDB Server**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - After installation, start the MongoDB server:
+     - On Windows, use the Command Prompt or PowerShell and run `mongod`.
+     - On macOS/Linux, open a terminal and run `mongod`.
+   - MongoDB server should now be running on `localhost:27017` by default.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. **Create a Database and Collection**
+
+   - You can create a database and collection using MongoDB Compass or through the MongoDB shell (`mongo` command).
+   - Example using MongoDB shell:
+     ```bash
+     # Connect to MongoDB
+     mongo
+     # Create a new database (replace `carbonFootprint` with your desired database name)
+     use carbonFootprint
+     # Create a collection (optional)
+     db.createCollection("yourCollectionName")
+     ```
+
+## Step 4: Configure `.env` File
+
+1. **Create `.env` File**
+
+   - In the root of your Node.js project, create a `.env` file if it doesn't already exist.
+
+2. **Environment Variables**
+
+   - Add the following environment variables to your `.env` file:
+     ```dotenv
+     # MongoDB Connection URI
+     MONGODB_URI=mongodb://localhost:27017/carbonFootprint
+     
+     # Example Email Credentials (replace `<your mail>` and `<your password>` with your actual email credentials)
+     EMAIL_USER=<your mail>
+     EMAIL_PASS=<your password>
+     ```
+
+   - Replace `carbonFootprint` in `MONGODB_URI` with the name of your MongoDB database.
+   - Replace `<your mail>` and `<your password>` with your actual email credentials for sending confirmation emails (if applicable).
+
+## Step 5: Start the Application
+
+1. Run the Node.js application:
+   ```bash
+   npm start
+   ```
+
+2. Access the application in your web browser at `http://localhost:3000` (assuming your application runs on port 3000).
+
+---
+
+This completes the setup guide for your Node.js project with MongoDB integration and environment configuration. Adjust paths, database names, and credentials according to your project's specific requirements and security practices.
+
