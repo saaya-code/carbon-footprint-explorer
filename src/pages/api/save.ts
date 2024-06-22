@@ -1,29 +1,22 @@
-
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connectMongo from '../../lib/mongodb';
-import mongoose from 'mongoose';
+import Result from '../../models/resultSchema';
 
-const resultSchema = new mongoose.Schema({
-  name: String,
-});
 
-const Result = mongoose.models.Result || mongoose.model('Result', resultSchema);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await connectMongo();
 
   if (req.method === 'POST') {
-    const { name } = req.body;
-    const newResult = new Result({ name });
+    const { name, eye_color, hair_color, gender, height  } = req.body;
+    const newResult = new Result({ name, eye_color, hair_color, gender, height});
 
     try {
       await newResult.save();
       res.status(200).send('Result saved successfully');
     } catch (error) {
       console.log(error);
-      res.status(500).send('Error saving result');
-      // @TODO : could handle with sentry or other error tracking service 
+      res.status(500).json({ ERROR : 'Error saving result' });
     }
   } else {
     res.setHeader('Allow', ['POST']);

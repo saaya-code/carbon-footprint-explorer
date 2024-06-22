@@ -1,12 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connectMongo from '../../lib/mongodb';
-import mongoose from 'mongoose';
-
-const resultSchema = new mongoose.Schema({
-  name: String,
-});
-
-const Result = mongoose.models.Result || mongoose.model('Result', resultSchema);
+import Result from '../../models/resultSchema';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await connectMongo();

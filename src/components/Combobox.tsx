@@ -2,21 +2,18 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Modal from './Modal';
+import SearchResult from '@/types/searchResult';
 
-interface SearchResult {
-  name: string;
-  id: string;
-  [key: string]: any;
-}
 
 interface ComboboxProps {
   onSearch: (query: string) => void;
   results: SearchResult[];
   onSave: (result: SearchResult) => void;
   savedResults: SearchResult[];
+  setResults: (results: SearchResult[]) => void;
 }
 
-export default function Combobox({ onSearch, results, onSave, savedResults }: ComboboxProps) {
+export default function Combobox({ onSearch, results, onSave, savedResults, setResults }: ComboboxProps) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const comboboxRef = useRef<HTMLDivElement>(null);
@@ -48,6 +45,7 @@ export default function Combobox({ onSearch, results, onSave, savedResults }: Co
   const handleClear = () =>{
     setQuery('');
     setIsFocused(false);
+    setResults([]);
   }
   
   const handleSave = async (result: SearchResult) => {
