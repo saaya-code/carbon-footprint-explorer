@@ -5,6 +5,7 @@ import mongoose, { Schema, model, Document } from 'mongoose';
 import connectMongo from '@/lib/mongodb';
 import sendConfirmationEmail from '@/utils/sendConfirmationEmail';
 import SubscriberModel from '@/models/subscriberSchema';
+import validateEmail from '@/utils/validateEmail';
 
 export async function subscribe(email: string): Promise<string> {
   await connectMongo();
@@ -14,7 +15,9 @@ export async function subscribe(email: string): Promise<string> {
     if (existingSubscriber) {
         return 'Email already subscribed';
     }
-
+    if(!validateEmail(email)){
+        return 'Invalid email address';
+    }
     const newSubscriber = new SubscriberModel({ email });
     await newSubscriber.save();
 
